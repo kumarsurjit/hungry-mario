@@ -1,0 +1,24 @@
+table {
+    border-collapse: collapse;
+  }
+  
+  td {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: left;
+    width: 20px;
+    height: 20px;
+    
+  }
+  .mushroom {
+    background: url('mushroom.svg');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  .mario {
+    background: url('mario.svg') !important;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
