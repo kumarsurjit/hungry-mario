@@ -83,7 +83,7 @@ var board = {
           position = this.newPosition('column', '-');
           break;
         default:
-            return;
+          return;
       }
       this.updateMario(position);
       
@@ -94,15 +94,20 @@ var board = {
       var obj = {};
       obj[key] = newValue;
       obj[otherKey] = this.position[otherKey];
+      if (obj && (obj.row < 0 ||
+        obj.row > this.rows - 1 ||
+        obj.column < 0 ||
+        obj.column > this.columns - 1)) {
+        return this.goThroughCords(obj, key, operator);
+      }
       return obj;
     },
+    goThroughCords (position, key, operator) {
+      const otherKey = key === 'row' ? 'columns' : 'rows';
+      position[key] = operator === '+' ? 0 : this[otherKey] - 1;
+      return position;
+    },
     updateMario: function(position) {
-      if (position && (position.row < 0 ||
-          position.row > this.rows - 1 ||
-          position.column < 0 ||
-          position.column > this.columns - 1)) {
-        return;
-      }
       this.getCell(this.position.row, this.position.column).classList.remove('mario');
       var newCell = this.getCell(position.row, position.column);
       newCell.classList.add('mario');
@@ -126,3 +131,8 @@ var mario = function(id) {
         board.moveMario(event.keyCode);
     });
 }
+
+
+
+// draw a board
+// draw mushrooms
